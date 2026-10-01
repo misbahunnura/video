@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FilmKu | Tonton film favoritmu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+
+<!-- ========== HALAMAN MASUK ========== -->
+<section id="auth" class="auth" hidden>
+  <div class="wrap auth-grid">
+    <div class="intro">
+      <p class="logo">FilmKu</p>
+      <h1>Tonton film favoritmu, tanpa ribet.</h1>
+      <ol class="langkah">
+        <li><b>Masuk dengan Gmail</b><span>Satu klik, tidak perlu membuat password baru.</span></li>
+        <li><b>Pilih film</b><span>Cari judul atau pilih genre yang kamu suka.</span></li>
+        <li><b>Tonton dan simpan</b><span>Tekan Simpan untuk menaruh film di Favorit.</span></li>
+      </ol>
+    </div>
+
+    <div class="panel">
+      <h2>Masuk ke FilmKu</h2>
+      <p class="panel-sub">Pakai akun Gmail kamu.</p>
+
+      <div id="gBtn" class="g-wrap"></div>
+
+      <form id="formDemo" novalidate hidden>
+        <label class="field"><span>Alamat Gmail</span>
+          <input id="demoEmail" type="email" autocomplete="email" placeholder="namakamu@gmail.com"></label>
+        <button class="main-btn" type="submit">Masuk</button>
+        <p class="catatan">Mode uji coba: email belum diverifikasi Google.</p>
+      </form>
+
+      <p class="pesan" id="pesan" role="alert"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HALAMAN UTAMA ========== -->
+<div id="app" hidden>
+  <div class="nav">
+    <div class="wrap nav-in">
+      <p class="logo">FilmKu</p>
+      <label class="search">
+        <span class="sr">Cari film</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="cari" type="search" placeholder="Cari judul film" autocomplete="off">
+      </label>
+      <div class="akun">
+        <span class="avatar" id="avatar" aria-hidden="true"></span>
+        <span class="nama" id="namaUser"></span>
+        <button type="button" class="out-btn" id="keluar">Keluar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="tip" id="tip">
+      <p><b>Cara pakai:</b> klik poster film yang kamu mau, lalu tonton. Tekan <b>Simpan</b> untuk menyimpannya di Favorit.</p>
+      <button type="button" id="tipTutup">Mengerti</button>
+    </div>
+
+    <header class="hero" id="hero" aria-label="Film pilihan">
+      <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+      <div class="hero-isi">
+        <p class="hero-meta" id="heroMeta"></p>
+        <h1 id="heroJudul"></h1>
+        <p class="hero-desk" id="heroDesk"></p>
+        <div class="hero-aksi">
+          <button type="button" class="main-btn lebar-auto" id="heroTonton">Tonton sekarang</button>
+          <button type="button" class="fav-btn" id="heroFav" aria-pressed="false">Simpan ke favorit</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="library" aria-label="Daftar film">
+      <div class="chips" id="chips" role="group" aria-label="Genre"></div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty" hidden>
+        <b id="emptyJudul"></b>
+        <span id="emptyIsi"></span>
+      </div>
+    </main>
+
+    <footer>FilmKu, dibuat oleh Misbahun Nura</footer>
+  </div>
+</div>
+
+<!-- ========== PEMUTAR FILM (muncul di atas halaman) ========== -->
+<div class="bioskop" id="bioskop" role="dialog" aria-modal="true" aria-labelledby="mJudul" hidden>
+  <div class="bioskop-isi">
+    <button type="button" class="tutup" id="tutup">Tutup</button>
+    <div class="layar">
+      <video id="player" controls playsinline preload="metadata"></video>
+      <iframe id="ytPlayer" title="Pemutar film YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" hidden></iframe>
+    </div>
+    <div class="info">
+      <p class="hero-meta" id="mMeta"></p>
+      <h2 id="mJudul"></h2>
+      <p class="hero-desk" id="mDesk"></p>
+      <button type="button" class="fav-btn" id="mFav" aria-pressed="false">Simpan ke favorit</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</body>
+</html>
